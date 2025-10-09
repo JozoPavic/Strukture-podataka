@@ -1,0 +1,5 @@
+﻿  Zad1.c
+C:\Users\student\Desktop\Strukture_JozoPavic\Vjezba1\Zad1\Zad1.c(20,21): warning C4047: '==': 'int' differs in levels of indirection from 'char [2]'
+C:\Users\student\Desktop\Strukture_JozoPavic\Vjezba1\Zad1\Zad1.c(27,17): warning C4013: 'malloc' undefined; assuming extern returning int
+C:\Users\student\Desktop\Strukture_JozoPavic\Vjezba1\Zad1\Zad1.c(27,11): warning C4047: 'initializing': 'student *' differs in levels of indirection from 'int'
+  Zad1.vcxproj -> C:\Users\student\Desktop\Strukture_JozoPavic\Vjezba1\Zad1\x64\Debug\Zad1.exe
