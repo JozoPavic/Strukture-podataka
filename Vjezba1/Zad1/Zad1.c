@@ -3,39 +3,61 @@
 
 #define N 10
 typedef struct {
-	char ime[N];
-	char prezime[N];
-	int bodovi;
+	char name[N];
+	char lastname[N];
+	int point;
 
-}student;
-int main() {
-	FILE *read = fopen("C:\\Users\\student\\Desktop\\Strukture_JozoPavic\\Prvi.txt", "r");
+}student; 
+int rowNum() {
+	FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Prvi.txt", "r");
 	if (read == NULL) {
 		return 0;
 	}
-	int rowCounter = 1, maxBrojBodova=100;
+
+	int rowCounter = 1;
 	char finder;
+
 	while (feof(read) == 0) {
 		finder = fgetc(read);
-		if (finder == "\n") {
+		if (finder == '\n') {
 			rowCounter++;
 		}
 	}
 	fclose(read);
-
-	FILE *read2 = fopen("C:\\Users\\student\\Desktop\\Strukture_JozoPavic\\Prvi.txt", "r");
-	student *stu = malloc(rowCounter * sizeof(student));
+	return rowCounter;
+}
+void loadStudents(student *stu) {
 	int newCounter = 0;
+
+	FILE* read2 = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Prvi.txt", "r");
+	if (read2 == NULL) {
+		return 0;
+	}
+
 	while (feof(read2) == 0) {
-		fscanf(read2, "%s", (stu + newCounter)->ime);
-		fscanf(read2, "%s", (stu + newCounter)->prezime);
-		fscanf(read2, "%d", &(stu + newCounter)->bodovi);
+		fscanf(read2, "%s", (stu + newCounter)->name);
+		fscanf(read2, "%s", (stu + newCounter)->lastname);
+		fscanf(read2, "%d", &(stu + newCounter)->point);
 		newCounter++;
 	}
 	fclose(read2);
 
-	for (int i = 0; i < newCounter; i++) {
-		printf("Ime: %s Prezime: %s Apsolutni Bodovi: %d Relativni Bodovi: %d \n", (stu + i)->ime, (stu + i)->prezime,(stu+i)->bodovi, ((stu + i)->bodovi)/maxBrojBodova*100);
+}
+void output(student* stu,int rowCounter) {
+	int maxPoints = 100;
+	for (int i = 0; i < rowCounter; i++) {
+		double relativePoints = (double)(stu + i)->point * maxPoints / 100;
+
+		printf("Ime: %s	Prezime: %s Apsolutni Bodovi: %d Relativni Bodovi: %.2f \n", (stu + i)->name, (stu + i)->lastname, (stu + i)->point, relativePoints);
 	}
+}
+int main() {
+	
+	int rowCounter = rowNum();
+	student *stu = malloc(rowCounter * sizeof(student));
+	
+	loadStudents(stu);
+	loadStudents(rowCounter,stu);
+	
 	return 0;
 }
