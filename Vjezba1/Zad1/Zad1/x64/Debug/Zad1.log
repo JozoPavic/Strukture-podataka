@@ -1,5 +1,6 @@
 ﻿  Zad1.c
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(21,14): warning C4047: '==': 'int' differs in levels of indirection from 'char [2]'
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(28,17): warning C4013: 'malloc' undefined; assuming extern returning int
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(28,11): warning C4047: 'initializing': 'student *' differs in levels of indirection from 'int'
-  Zad1.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\x64\Debug\Zad1.exe
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(59,17): warning C4013: 'malloc' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(62,15): warning C4047: 'function': 'student *' differs in levels of indirection from 'int'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(62,15): warning C4024: 'loadStudents': different types for formal and actual parameter 1
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(62,26): error C2197: 'int loadStudents(student *)': too many arguments for call
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba1\Zad1\Zad1.c(59,11): warning C4047: 'initializing': 'student *' differs in levels of indirection from 'int'

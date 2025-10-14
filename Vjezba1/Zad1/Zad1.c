@@ -26,7 +26,7 @@ int rowNum() {
 	fclose(read);
 	return rowCounter;
 }
-void loadStudents(student *stu) {
+int loadStudents(student *stu) {
 	int newCounter = 0;
 
 	FILE* read2 = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Prvi.txt", "r");
@@ -41,15 +41,17 @@ void loadStudents(student *stu) {
 		newCounter++;
 	}
 	fclose(read2);
-
+	return 0;
 }
-void output(student* stu,int rowCounter) {
+
+int output(student* stu,int rowCounter) {
 	int maxPoints = 100;
 	for (int i = 0; i < rowCounter; i++) {
 		double relativePoints = (double)(stu + i)->point * maxPoints / 100;
 
 		printf("Ime: %s	Prezime: %s Apsolutni Bodovi: %d Relativni Bodovi: %.2f \n", (stu + i)->name, (stu + i)->lastname, (stu + i)->point, relativePoints);
 	}
+	return 0;
 }
 int main() {
 	
@@ -57,7 +59,7 @@ int main() {
 	student *stu = malloc(rowCounter * sizeof(student));
 	
 	loadStudents(stu);
-	loadStudents(rowCounter,stu);
+	output(stu, rowCounter);
 	
 	return 0;
 }
