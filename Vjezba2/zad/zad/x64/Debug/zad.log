@@ -1,0 +1,3 @@
+﻿  zad2.c
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\zad\zad2.c(17,5): warning C4013: 'addName' undefined; assuming extern returning int
+  zad.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\x64\Debug\zad.exe

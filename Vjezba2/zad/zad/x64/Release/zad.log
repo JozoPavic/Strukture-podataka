@@ -1,0 +1,6 @@
+﻿  zad2.c
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 9 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\zad\zad2.c(60): error C4703: potentially uninitialized local pointer variable 'pomocna' used
+LINK : fatal error LNK1257: code generation failed
