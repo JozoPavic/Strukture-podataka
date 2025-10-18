@@ -43,12 +43,12 @@ int output(Postition Start) {
     return 0;
 }
 int Find(Postition Start) {
-    char X[N];
+    char* X = (char*)malloc(24 * sizeof(char));
     int i = 0;
     do {
-        printf("\nLastname you are looking for: ");
+        printf("Enter lastname you want to delete: ");
         scanf("%s", X);
-    } while (2 == 3);
+    } while (2 == 3 && strlen(X) > 9);
     
     while (Start != NULL && strcmp(Start->lastName, X) != 0) {
         Start = Start->Next;
@@ -75,9 +75,11 @@ Postition FindBefore(char X[N], Postition Start) {
 }
 
 int Delete(Postition Start) {
-    char X[N];
-    printf("Enter first lastname you want to delete: ");
-    scanf("%s", X);
+    char *X= (char*)malloc(24 * sizeof(char));
+    do {
+        printf("Enter lastname you want to delete: ");
+        scanf("%s", X);
+    } while (strlen(X) > 9);
     Start = FindBefore(X, Start);
     if (Start == NULL) {
         return -1;
@@ -85,25 +87,33 @@ int Delete(Postition Start) {
     Postition temp = Start->Next;
     Start->Next = temp->Next;
     free(temp);
+    free(X);
     return 0;
 }
 int addName(Postition Q) {
 
-    char temp[N];
-    int t;
-    printf("Enter first name: ");
-    scanf("%s", temp);
+    char *temp=(char*)malloc(24*sizeof(char));
+    int t=-1;
+    
+    do {
+        printf("Enter first name: ");
+        scanf("%s", temp);
+    } while (strlen(temp)>9);
     strcpy(Q->name, temp);
-    
-    printf("Enter first lastname: ");
-    scanf("%s", temp);
+
+    do {
+        printf("Enter lastname: ");
+        scanf("%s", temp);
+    } while (strlen(temp) > 9);
     strcpy(Q->lastName, temp);
-    
-    printf("Enter first birth year: ");
-    scanf_s("%d", &t);
+
+    do {
+        printf("Enter birth year: ");
+        scanf_s("%d", &t);
+    } while (t>2025 || t<0);
     Q->birthYear = t;
-    
-    
+  
+    free(temp);
     return 0;
 }
 int main() {
