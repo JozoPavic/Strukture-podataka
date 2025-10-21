@@ -11,15 +11,42 @@ typedef struct person {
     int birthYear;
     Postition Next;
 }Person;
+//Prototipi
+int addName(Postition);
+int addBefore(Postition);
+int addAfter(Postition);
+int output(Postition);
+int Find(Postition);
+Postition FindBefore(char, Postition);
+int Delete(Postition);
+
+int main() {
+
+    Person Head = {"","",0,NULL};
+    //Dodaj 3 el 2 na pocetak 1 na kraj liste
+    addBefore(&Head);
+    addBefore(&Head);
+    addAfter(&Head);
+    
+    //Pronađi el po prezimenu
+    Find(&Head);
+    //Ispisi
+    output(&Head);
+    //Izbrisi pa ispisi
+    Delete(&Head);
+    output(&Head);
+
+    return 0;
+}
 int addBefore(Postition Start) {
     //Provjera je li malloc uspio
-    Postition Q = (Postition )malloc(sizeof(Person));
+    Postition Q = (Postition)malloc(sizeof(Person));
     if (Q == NULL) {
         return -1;
     }
     //Poziv funkcije za dodavanje podataka
     addName(Q);
-   
+
     //Postavljanje na početak liste
     Q->Next = Start->Next;
     Start->Next = Q;
@@ -68,7 +95,7 @@ int Find(Postition Start) {
         //Oslobađanje buffer-a
         while ((getchar()) != '\n');
     } while (strlen(X) > 9);
-    
+
     //Provjera je li NULL el i je li prezime isto kao ono koje se trazi
     while (Start != NULL && strcmp(Start->lastName, X) != 0) {
         //Odlazak na iduci el
@@ -89,10 +116,10 @@ int Find(Postition Start) {
 
 Postition FindBefore(char X[N], Postition Start) {
     //Inicijalizacija
-    Postition helper= NULL;
+    Postition helper = NULL;
 
     //Provjera je li NULL el i je li prezime isto kao ono koje se trazi
-    while(Start != NULL && strcmp(Start->lastName, X) != 0) {
+    while (Start != NULL && strcmp(Start->lastName, X) != 0) {
         //helper postaje trenutni el
         helper = Start;
         //Start prelazi na iduci el
@@ -107,7 +134,7 @@ Postition FindBefore(char X[N], Postition Start) {
 
 int Delete(Postition Start) {
     //Alociranje do 100 znakova
-    char *X= (char*)malloc(100 * sizeof(char));
+    char* X = (char*)malloc(100 * sizeof(char));
     do {
         printf("Enter lastname you want to delete: ");
         scanf("%s", X);
@@ -133,16 +160,16 @@ int Delete(Postition Start) {
 }
 int addName(Postition Q) {
     //Alociranje do 100 znakova
-    char *X=(char*)malloc(100*sizeof(char));
-    int t=-1;//varijabla za godine 
-    
+    char* X = (char*)malloc(100 * sizeof(char));
+    int t = -1;//varijabla za godine 
+
     //Traziti ce da upises ime dok ne upises ime koje ima max 9 znakova
     do {
         printf("Enter first name: ");
         scanf("%s", X);
         //Oslobađanje buffer-a
         while ((getchar()) != '\n');
-    } while (strlen(X)>9);
+    } while (strlen(X) > 9);
     //Uspisi ime u el
     strcpy(Q->name, X);
 
@@ -162,29 +189,11 @@ int addName(Postition Q) {
         scanf_s("%d", &t);
         //Oslobađanje buffer-a
         while ((getchar()) != '\n');
-    } while (t>2025 || t<0);
+    } while (t > 2025 || t < 0);
     //Upisi u el liste
     Q->birthYear = t;
-    
+
     //Oslobodi memoriju
     free(X);
-    return 0;
-}
-int main() {
-
-    Person Head = {"","",0,NULL};
-    //Dodaj 3 el 2 na pocetak 1 na kraj liste
-    addBefore(&Head);
-    addBefore(&Head);
-    addAfter(&Head);
-    
-    //Pronađi el po prezimenu
-    Find(&Head);
-    //Ispisi
-    output(&Head);
-    //Izbrisi pa ispisi
-    Delete(&Head);
-    output(&Head);
-
     return 0;
 }
