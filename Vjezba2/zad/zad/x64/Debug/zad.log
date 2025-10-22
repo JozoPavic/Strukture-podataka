@@ -1,3 +1,4 @@
 ﻿  zad2.c
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\zad\zad2.c(116,27): warning C4028: formal parameter 1 different from declaration
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\zad\zad2.c(109,8): warning C4047: 'return': 'Postition' differs in levels of indirection from 'int'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\zad\zad2.c(119,27): warning C4028: formal parameter 1 different from declaration
   zad.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba2\zad\x64\Debug\zad.exe

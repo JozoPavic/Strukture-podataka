@@ -16,20 +16,21 @@ int addName(Postition);
 int addBefore(Postition);
 int addAfter(Postition);
 int output(Postition);
-int Find(Postition);
+Postition Find(Postition);
 Postition FindBefore(char, Postition);
 int Delete(Postition);
 
 int main() {
 
     Person Head = {"","",0,NULL};
+    Postition found = NULL;
     //Dodaj 3 el 2 na pocetak 1 na kraj liste
     addBefore(&Head);
     addBefore(&Head);
     addAfter(&Head);
     
     //Pronađi el po prezimenu
-    Find(&Head);
+    found=Find(&Head);
     //Ispisi
     output(&Head);
     //Izbrisi pa ispisi
@@ -83,7 +84,7 @@ int output(Postition Start) {
     }
     return 0;
 }
-int Find(Postition Start) {
+Postition Find(Postition Start) {
     //Alociranje do 100 znakova
     char* X = (char*)malloc(100 * sizeof(char));
     int i = 0;
@@ -105,13 +106,14 @@ int Find(Postition Start) {
     //Ako je dosa do kraja tj. NULL-a Ispisi da nije nasa
     if (Start == NULL) {
         printf("Not Found\n");
+       //return -1;
     }
     //ako je nasa ispise na kojoj je adresi
     else { printf("Found on address: %p\n", Start); }
 
     //Oslobodi memoriju koju je zaozeo pokazivac X
     free(X);
-    return 0;
+    return Start;
 }
 
 Postition FindBefore(char X[N], Postition Start) {
