@@ -30,30 +30,114 @@ int Delete(Postition);
 int addAfterElement(Postition);
 int addBeforeElement(Postition);
 int Sort(Postition);
+int txtOutput(Postition);
+int automaticScan(Postition);
 int main() {
-    char* t=(char *)malloc(sizeof(char)*100);
+
     Person Head = { "","",0,NULL };
     Postition found = NULL;
-    //Dodaj 3 el 2 na pocetak 1 na kraj liste
-    addBefore(&Head);
-    addBefore(&Head);
-    addAfter(&Head);
+    int num;
+    printf("Type 1 for manual input\nType 2 for automatic txt input \n");
+    scanf("%d", &num);
+    if (num == 1) {
+        addBefore(&Head);
+        addBefore(&Head);
+        addAfter(&Head);
 
-    //Pronađi el po prezimenu
-    found = Find(t,&Head);
-    //Ispisi
-    //Izbrisi pa ispisi
-    Delete(&Head);
-    output(&Head);
-    addAfterElement(&Head);
-    addBeforeElement(&Head);
+        //Ispisi
+        //Izbrisi pa ispisi
+        Delete(&Head);
+        output(&Head);
+        addAfterElement(&Head);
+        addBeforeElement(&Head);
+    }
+    else if (num == 2) {
+        automaticScan(&Head);
+    }
+    else { 
+        printf("Error\n");
+        return 0;
+    }
+
     output(&Head);
     printf("Sort\n");
 	Sort(Head.Next);
     output(&Head);
 
+    txtOutput(Head.Next);
+
     return 0;
 }
+int txtOutput(Postition Start) {
+    FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Ispis.txt", "w");
+    if (read == NULL) {
+        return -1;
+    }
+    while (Start != NULL) {
+        fprintf(read,"%s %s %d %p \n", Start->name, Start->lastName, Start->birthYear, Start);
+        //Odlazak na sljedeći el
+        Start = Start->Next;
+    }
+    fclose(read);
+    return 0;
+}
+int automaticScan(Postition Start) {
+    FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Upis.txt", "r");
+    if (read == NULL) {
+        return -1;
+    }
+    char* X = (char*)malloc(sizeof(char) * 10);
+    int t = 0;
+    while (feof(read) == 0) {
+        
+        Postition Q = (Postition)malloc(sizeof(Person));
+        if (Q == NULL) {
+            return -1;
+        }
+        Q->Next = NULL;
+        
+        fscanf(read, "%s",X);
+        strcpy(Q->name, X);
+        fscanf(read, "%s", X);
+        strcpy(Q->lastName, X);
+        fscanf(read, "%d",&t);
+        Q->birthYear = t;
+        while (Start->Next != NULL) {
+            Start = Start->Next;
+        }
+
+        Q->Next = Start->Next;
+        Start->Next = Q;
+    }
+
+    fclose(read);
+    return 0;
+}
+int rowNum() {
+    //Otvaranje File-a i provjera u slucaju greske
+    FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Upis.txt", "r");
+    if (read == NULL) {
+        return -1;
+    }
+    //rowConter=1 umjesto 0, jer u zadnjem redu ce naici na EOF
+    int rowCounter = 1;
+    char finder;
+
+    //Prolaz cijelim file-om 
+    while (feof(read) == 0) {
+        //Sprema trenutni znak
+        finder = fgetc(read);
+        /*Provjera je li znak '\n' i ako je povecati ce se
+        varijabla koja biljezi koliko je redova u File-u*/
+        if (finder == '\n') {
+            rowCounter++;
+        }
+    }
+    fclose(read);//Zatvaranje file-a
+    //Vracam broj redova
+    return rowCounter;
+}
+
 int Sort(Postition Start) {
    
     char* X = (char*)malloc(sizeof(char) * 10);
@@ -158,8 +242,7 @@ int addAfter(Postition Start) {
         return -1;
     }
     //Poziv funkcije za dodavanje podataka
-    addName(Q);
-
+      addName(Q);
     //Postavljanje na kraj liste
     Q->Next = Start->Next;
     Start->Next = Q;
@@ -256,36 +339,39 @@ int addName(Postition Q) {
     char* X = (char*)malloc(100 * sizeof(char));
     int t = -1;//varijabla za godine 
 
-    //Traziti ce da upises ime dok ne upises ime koje ima max 9 znakova
-    do {
-        printf("Enter first name: ");
-        scanf("%s", X);
-        //Oslobađanje buffer-a
-        while ((getchar()) != '\n');
-    } while (strlen(X) > 9);
-    //Uspisi ime u el
-    strcpy(Q->name, X);
+    
+        //Traziti ce da upises ime dok ne upises ime koje ima max 9 znakova
+        do {
+            printf("Enter first name: ");
+            scanf("%s", X);
+            //Oslobađanje buffer-a
+            while ((getchar()) != '\n');
+        } while (strlen(X) > 9);
+        //Uspisi ime u el
+        strcpy(Q->name, X);
 
-    //Traziti ce da upises prezime dok ne upises prezime koje ima max 9 znakova
-    do {
-        printf("Enter lastname: ");
-        scanf("%s", X);
-        //Oslobađanje buffer-a
-        while ((getchar()) != '\n');
-    } while (strlen(X) > 9);
-    //Upisi prezime u el liste
-    strcpy(Q->lastName, X);
+        //Traziti ce da upises prezime dok ne upises prezime koje ima max 9 znakova
+        do {
+            printf("Enter lastname: ");
+            scanf("%s", X);
+            //Oslobađanje buffer-a
+            while ((getchar()) != '\n');
+        } while (strlen(X) > 9);
+        //Upisi prezime u el liste
+        strcpy(Q->lastName, X);
 
-    //Traziti ce da upises god. rođenja dok ne upises neku koja nije veca od trenutne 2025 i nije negativna
-    do {
-        printf("Enter birth year: ");
-        scanf("%d", &t);
-        //Oslobađanje buffer-a
-        while ((getchar()) != '\n');
-    } while (t > 2025 || t < 0);
-    //Upisi u el liste
-    Q->birthYear = t;
+        //Traziti ce da upises god. rođenja dok ne upises neku koja nije veca od trenutne 2025 i nije negativna
+        do {
+            printf("Enter birth year: ");
+            scanf("%d", &t);
+            //Oslobađanje buffer-a
+            while ((getchar()) != '\n');
+        } while (t > 2025 || t < 0);
+        //Upisi u el liste
+        Q->birthYear = t;
 
+    
+    
     //Oslobodi memoriju
     free(X);
     return 0;
