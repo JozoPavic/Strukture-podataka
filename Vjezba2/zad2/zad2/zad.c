@@ -56,7 +56,7 @@ int main() {
     }
     else { 
         printf("Error\n");
-        return 0;
+        return -1;
     }
 
     output(&Head);
@@ -112,30 +112,6 @@ int automaticScan(Postition Start) {
 
     fclose(read);
     return 0;
-}
-int rowNum() {
-    //Otvaranje File-a i provjera u slucaju greske
-    FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Upis.txt", "r");
-    if (read == NULL) {
-        return -1;
-    }
-    //rowConter=1 umjesto 0, jer u zadnjem redu ce naici na EOF
-    int rowCounter = 1;
-    char finder;
-
-    //Prolaz cijelim file-om 
-    while (feof(read) == 0) {
-        //Sprema trenutni znak
-        finder = fgetc(read);
-        /*Provjera je li znak '\n' i ako je povecati ce se
-        varijabla koja biljezi koliko je redova u File-u*/
-        if (finder == '\n') {
-            rowCounter++;
-        }
-    }
-    fclose(read);//Zatvaranje file-a
-    //Vracam broj redova
-    return rowCounter;
 }
 
 int Sort(Postition Start) {
