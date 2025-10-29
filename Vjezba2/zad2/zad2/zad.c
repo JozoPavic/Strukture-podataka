@@ -1,9 +1,6 @@
-﻿
-#define _CRT_SECURE_NO_WARNINGS 
+﻿#define _CRT_SECURE_NO_WARNINGS 
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include <string.h>
 #define N 10
 
@@ -14,11 +11,7 @@ typedef struct person {
     int birthYear;
     Postition Next;
 }Person;
-/*E) KORISTI DODAVANJE NA KRAJ LISTE
 
-
-
-*/
 //Prototipi
 int addName(Postition);
 int addBefore(Postition);
@@ -48,46 +41,55 @@ int main() {
         //Izbrisi pa ispisi
         Delete(&Head);
         output(&Head);
+        //Dodaj el nakon drugog pa dodaj el prije drugog
         addAfterElement(&Head);
         addBeforeElement(&Head);
     }
     else if (num == 2) {
+        //Poziv funkcije da uzme podatke iz txt 
         automaticScan(&Head);
     }
     else { 
         printf("Error\n");
         return -1;
     }
-
+    //Ispis
     output(&Head);
     printf("Sort\n");
-	Sort(Head.Next);
-    output(&Head);
+    //Sortiranje
+	Sort(&Head);
 
+    output(&Head);
+    //Ispis u datoteku
     txtOutput(Head.Next);
 
     return 0;
 }
 int txtOutput(Postition Start) {
+    //Otvara datoteku za pisat u
     FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Ispis.txt", "w");
     if (read == NULL) {
         return -1;
     }
+    //Klasika ispis
     while (Start != NULL) {
         fprintf(read,"%s %s %d %p \n", Start->name, Start->lastName, Start->birthYear, Start);
         //Odlazak na sljedeći el
         Start = Start->Next;
     }
+    //Zatvori txt
     fclose(read);
     return 0;
 }
 int automaticScan(Postition Start) {
+    //Otvori txt koji ce citat
     FILE* read = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba2\\zad2\\Upis.txt", "r");
     if (read == NULL) {
         return -1;
     }
     char* X = (char*)malloc(sizeof(char) * 10);
     int t = 0;
+    //Dok nedođe do kraja
     while (feof(read) == 0) {
         
         Postition Q = (Postition)malloc(sizeof(Person));
@@ -95,51 +97,60 @@ int automaticScan(Postition Start) {
             return -1;
         }
         Q->Next = NULL;
-        
+        //Skeniraj i stavi u Q
         fscanf(read, "%s",X);
         strcpy(Q->name, X);
         fscanf(read, "%s", X);
         strcpy(Q->lastName, X);
         fscanf(read, "%d",&t);
         Q->birthYear = t;
+        //Dođe do kraja liste
         while (Start->Next != NULL) {
             Start = Start->Next;
         }
-
+        //Stavi na kraj
         Q->Next = Start->Next;
         Start->Next = Q;
     }
-
+    //Zatvori
     fclose(read);
+    free(X);
     return 0;
 }
 
 int Sort(Postition Start) {
-   
-    char* X = (char*)malloc(sizeof(char) * 10);
-    char* X2 = (char*)malloc(sizeof(char) * 10);
-    int X3;
-    Postition Q = Start;
-    Postition Q2 = Start;
-    for (Q2 = Start; Q2 != NULL; Q2 = Q2->Next) {
-        for (Q= Start; Q->Next != NULL; Q = Q->Next) {
-            if (strcmp(Q->lastName, Q->Next->lastName) > 0) {
-                strcpy(X, Q->lastName);
-                strcpy(X2, Q->name);
-                X3 = Q->birthYear;
+    //Q2 je trenutno Head
+    Postition Q,Q2=Start,temp=NULL,prev;
+    int sort;
+    //DoWhile uci ce 2 puta tj dok ne sortira sve
+    do {
+        sort = 0;
+        for (Q2 = Start; Q2->Next != NULL; Q2 = Q2->Next) {
+            //Postavi prev na Q2 u slucaju zamjene tako da prev->Next se moze postavit na el
+            prev = Q2;
+            //Q=Q2->Next sada dobiva prvi el
+            for (Q = Q2->Next; Q->Next != NULL; Q = Q->Next) {
+                //Ako je vece od 1 onda treba zamjenit tj Z>A
+                if (strcmp(Q->lastName, Q->Next->lastName) > 0) {
+                    //Temp ima adresu sljedeceg el
+                    temp = Q->Next;
+                    //prev->Next sada pokazuje na sljedeci el tj. na onaj koji ce sada biti. prije
+                    prev->Next = temp;
+                    //Q el. pokazuje na sljedeci el tj zamjenio se 
+                    Q->Next = temp->Next;
+                    //Sljedeci el(onaj sa kojim se zamjenio) pokazuje na Q
+                    temp->Next = Q;
+                    Q = temp;
 
-                strcpy(Q->lastName, Q->Next->lastName);
-                strcpy(Q->name, Q->Next->name);
-                Q->birthYear = Q->Next->birthYear;
+                    sort = 1;
 
-                strcpy(Q->Next->lastName, X);
-                strcpy(Q->Next->name, X2);
-                Q->Next->birthYear = X3;
+                }
+                //Postavi prev na prosli Q
+                prev = Q;
             }
-        }
-    }
-    
 
+        }
+    } while (sort == 1);
     return 0;
 }
 int addAfterElement(Postition Start) {
@@ -155,12 +166,14 @@ int addAfterElement(Postition Start) {
         //Oslobađanje buffer-a
         while ((getchar()) != '\n');
     } while (strlen(X) > 9);
+    //Nađi adresu el iza kojega treba staviti novi el
     Start = Find(X, Start);
     if (Start == NULL) {
         return -1;
     }
+    //Dodaj mu podatke ime etc.
     addName(Q);
-    //Postavljanje na početak liste
+    //Postavljanje u liste
     Q->Next = Start->Next;
     Start->Next = Q;
 
@@ -180,16 +193,16 @@ int addBeforeElement(Postition Start) {
         //Oslobađanje buffer-a
         while ((getchar()) != '\n');
     } while (strlen(X) > 9);
-
+    //Nađi adresu el prije upisanog prez
     Start = FindBefore(X, Start);
     if (Start == NULL) {
         return -1;
     }
     addName(Q);
-    //Postavljanje na početak liste
+    //Postavljanje u listu
     Q->Next = Start->Next;
     Start->Next = Q;
-    //free(X);
+    free(X);
     return 0;
 }
 int addBefore(Postition Start) {
