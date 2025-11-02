@@ -3,6 +3,6 @@ C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\Vjezba5\z.c(8,9
       C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\ucrt\stdlib.h(53,9):
       see previous definition of 'EXIT_FAILURE'
   
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\Vjezba5\z.c(53,15): warning C4047: '==': 'char *' differs in levels of indirection from 'int'
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\Vjezba5\z.c(90,15): warning C4047: '==': 'char *' differs in levels of indirection from 'int'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\Vjezba5\z.c(45,15): warning C4047: '==': 'char *' differs in levels of indirection from 'int'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\Vjezba5\z.c(83,15): warning C4047: '==': 'char *' differs in levels of indirection from 'int'
   Vjezba5.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba5\x64\Debug\Vjezba5.exe

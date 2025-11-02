@@ -13,15 +13,6 @@ typedef struct postfix {
 }postfix;
 
 //Prototipi
-/*
-oslobodi listu temp->Next=NULL;
-
-free(temp)
-
-Nikad u fun(&head)
-head=head->Next radije Q=head->Next korisit zamjenski pokazivac
-
-*/
 int fileCheck();
 int fileRead(Position);
 int push(Position,int);
@@ -34,7 +25,7 @@ int main() {
     fileRead(&Head); 
     out(Head.Next); 
 
-    
+
     return EXIT_SUCCESS;
 }
 int fileCheck() {
@@ -42,7 +33,8 @@ int fileCheck() {
     FILE *f = fopen("C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba5\\postifx.txt","r");
     if (f == NULL) { 
         return -1; }
-    char *c=(char*)malloc(sizeof(char)*7);
+    //Brojevi sa 9 znamenki max
+    char *c=(char*)malloc(sizeof(char)*10);
     int numberOfNumbers = 0,dum;
     int numberOfOperations = 0;
 
@@ -80,7 +72,8 @@ int fileRead(Position Start) {
         return -1;
     }
     Position Q = Start;
-    char* c = (char*)malloc(sizeof(char) * 7);
+    //Brojevi sa 9 znamenki max
+    char* c = (char*)malloc(sizeof(char) * 10);
     int numberOfNumbers = 0,dum;
     
     while (feof(f) == 0) {
@@ -88,7 +81,7 @@ int fileRead(Position Start) {
         fscanf(f,"%s", c);
 
         if (c == EOF) {
-
+        
         }
         else if (sscanf(c, "%d", &dum) == 1) {
             numberOfNumbers++;
@@ -97,13 +90,11 @@ int fileRead(Position Start) {
         else {
             if (numberOfNumbers > 1) {
               pop(Q->Next, Q->Next->Next, *c);
-
             }
             else {
                 printf("Nije postfix\n");
                 return EXIT_FAILURE;
             }
-             
         }
     }
     free(c);
@@ -123,22 +114,26 @@ int push(Position Start,int num) {
     return 0;
 }
 int pop(Position First, Position Second,char c) {
-    printf("\n%d", First->number);
-    printf("\n%d", Second->number);
-    if (c == '+') {
-       First->number = First->number + Second->number;
-    }
-    if (c == '*') {
-       First->number = First->number * Second->number;
-    }
-    if (c == '-') {
+    switch (c) {
+        case '+':
+        First->number = First->number + Second->number;
+        break;
+        
+        case '*':
+        First->number = First->number * Second->number;
+        break;
+
+        case '-':
         First->number = First->number - Second->number;
-    }
-    if (c == '%') {
+        break;
+
+        case '%':
         First->number = First->number % Second->number;
-    }
-    if (c == '/') {
+        break;
+
+        case '/':
         First->number = First->number / Second->number;
+        break;
     }
     First->Next = Second->Next;
     Second->Next = NULL;
@@ -147,7 +142,7 @@ int pop(Position First, Position Second,char c) {
 }
 int out(Position Q) {
     if (Q == NULL) {
-    
+        return EXIT_FAILURE;
     }
     printf("\nRezultat: ");
     while (Q != NULL) {
@@ -158,5 +153,5 @@ int out(Position Q) {
 
     free(Q);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
