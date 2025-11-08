@@ -1,0 +1,6 @@
+﻿  zad.c
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\vjezba4\vjezba4\zad.c(5,9): warning C4005: 'EXIT_FAILURE': macro redefinition
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\ucrt\stdlib.h(53,9):
+      see previous definition of 'EXIT_FAILURE'
+  
+  vjezba4.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\vjezba4\x64\Debug\vjezba4.exe
