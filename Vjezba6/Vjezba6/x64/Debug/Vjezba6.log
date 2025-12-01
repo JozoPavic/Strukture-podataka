@@ -1,0 +1,7 @@
+﻿  zad.c
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(59,4): warning C4013: 'maxValue' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(60,4): warning C4013: 'outTest' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(67,4): warning C4013: 'itemValuePeriod' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(185,21): warning C4013: 'dateBetween' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(354,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Vjezba6.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\x64\Debug\Vjezba6.exe
