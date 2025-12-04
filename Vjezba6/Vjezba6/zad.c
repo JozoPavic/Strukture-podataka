@@ -26,7 +26,7 @@ typedef struct _bill {
 	datePosition date;
 	billPosition NextBill;
 }Bill;
-
+//Struktura za listu svih proizvoda
 typedef struct itemValue* itemValuePosition;
 typedef struct itemValue {
 	char name[MAX];
@@ -88,7 +88,7 @@ int main() {
 		case'B':
 			//Sprema sve artikle iz računa
 			maxValue(&Head, &ItemHead, 0);
-			//Ispiše sve račune
+			//Ispiše sve proizvode iz svih računa koji su bili korišteni u funkciji maxValue()
 			outTest(&ItemHead);
 			//Poziv na to hoće li se program završiti i vratiti u meni
 			active = backOrClose();
@@ -199,8 +199,8 @@ int main() {
 int backOrClose() {
 	//Govori korisniku da pritisne ENTER da se vrati u meni
 	//Bilo što drugo završava program
-	printf("\nStisnite Enter da bi se vratili u meni\n");
-	printf("Stisnite bilo što da bi ste zatvorili program\n");
+	printf("\Press Enter to go back to the menu\n");
+	printf("Press anything else to close program\n");
 	//Clear-a buffer
 	while ((getchar()) != '\n');
 	//Traži unos znaka
@@ -520,7 +520,7 @@ int outTest(itemValuePosition Start) {
 }
 int out(billPosition Start) {
 	if (Start == NULL) {
-		printf("Sve obrisano");
+		printf("Everything deleted");
 		return 0;
 	}
 	billPosition B = Start;

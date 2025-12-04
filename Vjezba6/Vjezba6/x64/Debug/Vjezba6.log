@@ -3,6 +3,7 @@ C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(1
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(175,4): warning C4013: 'itemFound' undefined; assuming extern returning int
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(194,2): warning C4013: 'deleteBills' undefined; assuming extern returning int
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(58,7): warning C4047: 'initializing': 'int' differs in levels of indirection from 'void *'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(202,9): warning C4129: 'P': unrecognized character escape sequence
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(233,21): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(340,10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba6\Vjezba6\zad.c(335,14): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
