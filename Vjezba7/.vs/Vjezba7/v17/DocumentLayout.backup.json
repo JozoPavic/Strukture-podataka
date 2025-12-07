@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba7\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{813C4F81-116A-40CA-83DA-68AD5D75FD6B}|Vjezba7\\Vjezba7.vcxproj|C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba7\\Vjezba7\\zad.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{813C4F81-116A-40CA-83DA-68AD5D75FD6B}|Vjezba7\\Vjezba7.vcxproj|solutionrelative:Vjezba7\\zad.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "zad.c",
+              "DocumentMoniker": "C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba7\\Vjezba7\\zad.c",
+              "RelativeDocumentMoniker": "Vjezba7\\zad.c",
+              "ToolTip": "C:\\Users\\YpgCo\\source\\repos\\JozoPavic\\Strukture-podataka\\Vjezba7\\Vjezba7\\zad.c*",
+              "RelativeToolTip": "Vjezba7\\zad.c*",
+              "ViewState": "AgIAACQAAAAAAAAAAAAgwC0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-12-07T09:40:31.444Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
