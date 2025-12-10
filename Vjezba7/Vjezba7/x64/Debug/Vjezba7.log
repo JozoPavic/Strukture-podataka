@@ -1,3 +1,3 @@
 ﻿  zad.c
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba7\Vjezba7\zad.c(68,5): warning C4013: 'out' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba7\Vjezba7\zad.c(73,5): warning C4013: 'out' undefined; assuming extern returning int
   Vjezba7.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Vjezba7\x64\Debug\Vjezba7.exe
