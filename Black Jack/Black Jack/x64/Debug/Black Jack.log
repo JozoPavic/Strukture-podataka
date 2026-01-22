@@ -7,12 +7,12 @@ C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\s
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(115,21): warning C4013: 'wait' undefined; assuming extern returning int
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(134,21): warning C4013: 'reset' undefined; assuming extern returning int
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(245,29): warning C4013: 'compareTwoHands' undefined; assuming extern returning int
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(503,25): warning C4013: 'splitHand' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(509,25): warning C4013: 'splitHand' undefined; assuming extern returning int
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(23,10): warning C4047: 'initializing': 'int' differs in levels of indirection from 'void *'
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(24,10): warning C4047: 'initializing': 'int' differs in levels of indirection from 'void *'
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(25,10): warning C4047: 'initializing': 'int' differs in levels of indirection from 'void *'
 C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(26,10): warning C4047: 'initializing': 'int' differs in levels of indirection from 'void *'
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(552,5): warning C4013: 'resetDeck' undefined; assuming extern returning int
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(664,10): warning C4047: 'initializing': 'char' differs in levels of indirection from 'void *'
-C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(812,21): warning C4047: '=': 'char' differs in levels of indirection from 'void *'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(558,5): warning C4013: 'resetDeck' undefined; assuming extern returning int
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(672,10): warning C4047: 'initializing': 'char' differs in levels of indirection from 'void *'
+C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\Black Jack\source.c(820,21): warning C4047: '=': 'char' differs in levels of indirection from 'void *'
   Black Jack.vcxproj -> C:\Users\YpgCo\source\repos\JozoPavic\Strukture-podataka\Black Jack\x64\Debug\Black Jack.exe

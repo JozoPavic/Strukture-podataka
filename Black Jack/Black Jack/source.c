@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include<time.h>
-
+int setUp = 0;
 typedef struct card* Position;
 typedef struct card {
     char name;
@@ -102,13 +102,13 @@ int main() {
                 }
                 //Ako je ulog vazeci
                 if (currentBet > 0 && currentBet <= money) {
-                    
+
                     confirmedBet = 1;
                     indexY = 0;
                     //Vise nemozemo promjeniti ulog 
                     selectingBet = 0;
                     index = 0;
-                    
+
                     //Izvalcimo kartu(za igraca) sa out2, pa sa printer-om nacrtamo pa sa wait sacekamo 2 sek
                     sum = sum + out2(deck.Next, sum, &hand);
                     printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
@@ -119,7 +119,7 @@ int main() {
                     wait();
                     //Ponovno izvucemo kartu za igraca, pa nacrtamo
                     sum = sum + out2(deck.Next, sum, &hand);
-                    
+
                     printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                 }//Ako vec u prve 2 karte izvucemo 21 automatska pobjeda
                 if (sum == 21) {
@@ -131,7 +131,7 @@ int main() {
                     wait();
                     //Resetiraj, postavi strelicu na opciju odabira uloga
                     indexY = 1;
-                    reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                    reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                     selectingBet = 1;
                 }
                 break;
@@ -143,7 +143,7 @@ int main() {
             if (indexY == 1 && confirmedBet == 0) {
                 currentBet = currentBet - 50;
             }
-            else if(indexY==0) {
+            else if (indexY == 0) {
                 //Pomak po 4 opcije ako dođe na kraj vrati ga na pocetak
                 index--;
                 if (index < 0) {
@@ -229,7 +229,7 @@ int main() {
                         printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                         //Ako je ima 21 ili vise odmah Dealer krece izvlaciti karte tj. tvoj potez je zavrsen
                         if (sum1 >= 21) {
-                            
+
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             wait();
 
@@ -244,7 +244,7 @@ int main() {
                             //Uspoređuje ruke
                             compareTwoHands(sum, sum1, sum2, &money, &currentBet, &currentBet2);
                             //resetira i ponovno nacrta prazan stol
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             //Ponovno mozemo odabirati ulog
                             indexY = 1;
@@ -270,7 +270,7 @@ int main() {
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             indexY = 1;
                             //Resetiraj sve da opet mozemo igrat
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             selectingBet = 1;
 
                         }//Izgubio
@@ -281,7 +281,7 @@ int main() {
                             //Resetiraj sve da opet mozemo igrat
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             selectingBet = 1;
 
                         }
@@ -308,7 +308,7 @@ int main() {
                         compareTwoHands(sum, sum1, sum2, &money, &currentBet, &currentBet2);
 
                         //resetiraj da se opet moze igrat
-                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                         printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
 
                         indexY = 1;
@@ -330,24 +330,24 @@ int main() {
                     //Ako je dealer prekoracia 21 ili ima manje od igraca
                     if (sum2 > 21 || sum2 < sum) {
                         //printf("\nYOU WIN");
-                       
+
                         //Povecaj novac pa resetiraj
                         money = money + currentBet;
                         printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                     }
                     else if (sum2 > sum) {
                         //printf("\nYOU LOSE");
-                        
+
                         //Smanji novac pa resetiraj
                         money = money - currentBet;
                         printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                     }
                     //Ako je izjednaceno
                     else if (sum2 == sum) {
 
-                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                        reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                         printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
 
                     }
@@ -365,47 +365,53 @@ int main() {
                     numberOfActions++;
                     //Ako imamo 2 ruke
                     if (numberOfHands > 1) {
+
                         //PRVA RUKA 
                         if (firstDone == 0) {
-                            //vuci kartu
-                            sum = sum + out2(deck.Next, sum, &hand);
-                            //udvostruci ulog za tu ruku
-                            currentBet = 2 * currentBet;
+                            if ((currentBet * 2 + currentBet2) <= money) {
+                                //vuci kartu
+                                sum = sum + out2(deck.Next, sum, &hand);
+                                //udvostruci ulog za tu ruku
+                                currentBet = 2 * currentBet;
 
-                            printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-                            //Promjeni ruku
-                            firstDone = 1;
-                            //Pomakni strelicu
-                            printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-                            break;
-
+                                printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+                                //Promjeni ruku
+                                firstDone = 1;
+                                //Pomakni strelicu
+                                printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+                                break;
+                            }
+                            else {}
                         }
                         else {//DRUGA RUKA
-                            //vuci kartu
-                            sum1 = sum1 + out2(deck.Next, sum1, &Secondhand);
-                            //Udvostruci ulog za tu ruku
-                            currentBet2 = currentBet2 * 2;
+                            if ((currentBet2 * 2 + currentBet) <= money) {
+                                //vuci kartu
+                                sum1 = sum1 + out2(deck.Next, sum1, &Secondhand);
+                                //Udvostruci ulog za tu ruku
+                                currentBet2 = currentBet2 * 2;
 
-                            printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-
-                            //STAY
-                            while (sum2 < 17) {
-                                //DEALER KRECE IZVLACITI KARTE
-                                sum2 = sum2 + out2(deck.Next, sum2, &dealer);
                                 printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-                                wait();
+
+                                //STAY
+                                while (sum2 < 17) {
+                                    //DEALER KRECE IZVLACITI KARTE
+                                    sum2 = sum2 + out2(deck.Next, sum2, &dealer);
+                                    printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+                                    wait();
+                                }
+                                //Usporedi rukue
+
+                                compareTwoHands(sum, sum1, sum2, &money, &currentBet, &currentBet2);
+
+                                //Resetiraj
+                                reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
+                                printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+
+                                indexY = 1;
+                                selectingBet = 1;
+                                printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             }
-                            //Usporedi rukue
-
-                            compareTwoHands(sum, sum1, sum2, &money, &currentBet, &currentBet2);
-
-                            //Resetiraj
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
-                            printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
-
-                            indexY = 1;
-                            selectingBet = 1;
-                            printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+                            else {}
                         }
                     }
                     else {//Samo 1 ruka - nema SPLIT-a
@@ -424,7 +430,7 @@ int main() {
                             //active = 0;
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             selectingBet = 1;
                             break;
                         }//Igrac je prekoracio
@@ -434,7 +440,7 @@ int main() {
                             money = money - currentBet;
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             selectingBet = 1;
                             break;
                         }
@@ -450,11 +456,11 @@ int main() {
                         if (sum2 > 21 || sum2 < sum) {
                             //printf("\nYOU WIN");
                             money = money + currentBet;
-                            
+
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             //Resetiraj
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             selectingBet = 1;
                             break;
                         }//Igrac izgubio
@@ -465,7 +471,7 @@ int main() {
 
                             //Resetiraj
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             selectingBet = 1;
                             break;
@@ -474,7 +480,7 @@ int main() {
                         else if (sum2 == sum) {
                             //Resetiraj
                             indexY = 1;
-                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                            reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands, &currentBet);
                             printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
                             selectingBet = 1;
                             break;
@@ -483,8 +489,8 @@ int main() {
                     }
 
 
-                    reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
-                    printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
+                    //reset(&sum, &sum1, &sum2, &deck, &hand, &Secondhand, &dealer, &confirmedBet, &numberOfActions, &numberOfHands);
+                    //printer(index, sum, sum1, sum2, &hand, &Secondhand, &dealer, money, currentBet, indexY, firstDone);
 
                 }
 
@@ -543,7 +549,7 @@ int wait() {
     }
     return 0;
 }
-int reset(int* sum, int* sum1, int* sum2, Position deck, Position hand, Position Secondhand, Position dealer, int* confirmedBet, int* numberOfActions, int* numberOfHands) {
+int reset(int* sum, int* sum1, int* sum2, Position deck, Position hand, Position Secondhand, Position dealer, int* confirmedBet, int* numberOfActions, int* numberOfHands, int* currentBet) {
     //Obrisi ruke igraca i dealera
     delete(hand);
     delete(Secondhand);
@@ -558,6 +564,8 @@ int reset(int* sum, int* sum1, int* sum2, Position deck, Position hand, Position
     *confirmedBet = 0;
     *numberOfActions = 0;
     *numberOfHands = 1;
+    *currentBet = 0;
+    setUp = 0;
     return 0;
 }
 int splitHand(Position FirstHand, Position SecondHand, int* sum, int* sum1) {
@@ -671,12 +679,12 @@ int printer(int index, int sum, int sum1, int sum2, Position hand, Position hand
     else {
         printf("YOU %d %d DEALER %d%28cMoney:%d$\n", sum, sum1, sum2, space, money);
     }
-    
+
     for (int i = 0; i < 57; i++) {
         printf("_");
     }
-    printf("\nDEALER%18c",space);
-    
+    printf("\nDEALER%18c", space);
+
     if (dealer != NULL) {
         if (printHand(dealer->Next) == 0) {
             printf("\n");
@@ -685,8 +693,8 @@ int printer(int index, int sum, int sum1, int sum2, Position hand, Position hand
             printHand(dealer->Next);
         }
     }
-    printf("\n\nYOU%19c",space);
-  
+    printf("\n\nYOU%19c", space);
+
     if (firstDone == 0) {
         printf("> ");
     }
@@ -700,8 +708,8 @@ int printer(int index, int sum, int sum1, int sum2, Position hand, Position hand
         }
     }
 
-        printf("%22c",space);
-    
+    printf("%22c", space);
+
     if (firstDone == 1) {
         printf("> ");
     }
@@ -715,7 +723,7 @@ int printer(int index, int sum, int sum1, int sum2, Position hand, Position hand
         }
 
     }
-    
+
     for (int i = 0; i < 57; i++) {
         printf("-");
     }
@@ -860,12 +868,18 @@ int out2(Position First, int sum, Position Hand) {
     int again = 0;
     Position Start = First;
     Position P = Hand;
-    int ran,i=0;
+    int ran, i = 0;
     do {
         again = 0;
         ran = rand() % 52 + 1;
-        //ran = 10 + 13 * i;
-        //i++;
+        /*if (setUp == 0 || setUp == 2) {
+            ran = 5 + 13 * setUp;
+
+        }
+        else {
+            ran = rand() % 52 + 1;
+        }
+        setUp++;*/
         for (int i = 0; i < ran - 1; i++) {
             Start = Start->Next;
         }
@@ -899,7 +913,7 @@ int out2(Position First, int sum, Position Hand) {
     //te karte vise nema u spilu
     Start->numDeck--;
 
-    
+
     if (ran > 39) {
         ran = ran - 13;
     }
